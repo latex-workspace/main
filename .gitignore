@@ -1,0 +1,5 @@
+**/*
+!.gitignore
+!.preamble.fmt
+!.preamble.tex
+!.README.md

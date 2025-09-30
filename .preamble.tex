@@ -1,0 +1,1042 @@
+\documentclass[12pt,a4paper,oneside]{article}
+%
+\usepackage[utf8]{inputenc}%gestisce caratteri UTF8
+\usepackage[italian]{babel}%gestisce hyphenation
+\usepackage[colorlinks]{hyperref}%gestisce collegamenti ipertestuali e hypelinkage
+\usepackage{soulutf8}%sottolineature con line break
+\usepackage{tabularx}%tabelle più sofisticate
+\usepackage{graphics}%per importare immagini
+\usepackage[table,xcdraw]{xcolor}%per usare colori
+\usepackage{listings}%per listare pezzi di codice (c++ o altro)
+\usepackage{amsmath}%per cose matematiche (es. allign)
+\usepackage{mathtools}%per underbracket
+\usepackage{amssymb}%per simboli tipo strettamente incluso
+\usepackage{tikz}%per disegnare
+\usepackage{pgfplots}%per fare grafici a barre e plottare funzioni
+\usepackage{pgf-pie}%per fare grafici a torta
+\usepackage[margin=1in, marginparwidth=50pt]{geometry}%per settare margini e spaziature
+\usepackage{forest}%per disegnare alberi
+\usepackage{etoolbox}%per sistemare stile (renderlo come amsart pur usando amsbook con capitoli)
+\usepackage{tocloft}%per liste di comandi e teoremi
+\usepackage{float}%per posizionamento tabelle
+\usetikzlibrary{er, positioning,patterns}
+\usepackage{ccicons}
+\usepackage{booktabs}
+\usepackage{titlesec}% for custom titles
+\usepackage[nameinlink, italian]{cleveref}
+
+\usepackage{mathrsfs}
+\usepackage{tcolorbox}%per box colorati
+\usepackage[ruled, vlined]{algorithm2e}
+\usepackage{subcaption}
+
+% \tcbset{shield externalize}
+\renewcommand{\labelitemi}{$\circ$}
+
+\definecolor{mutedblue}{RGB}{72,70,120}
+\definecolor{mutedcyan}{RGB}{55, 126, 126}
+\definecolor{mutedred}{RGB}{167, 60, 40}
+\definecolor{mutedpurple}{RGB}{128 60 136}
+\definecolor{mutedgreen}{RGB}{55 126 34}
+\definecolor{muteddarkgreen}{RGB}{108 119 48}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mutedblue,
+	citecolor=mutedgreen,
+	filecolor=mutedred,
+	urlcolor=mutedcyan,
+}
+
+
+
+%stili tikz
+\tikzset{
+	blackdot/.style={
+			circle,fill,inner sep=1.5pt, anchor = center
+		},
+	whitedot/.style={
+			circle,fill=white, draw, inner sep=1.5pt, anchor = center
+		}
+}
+%SETTAGGI PRELIMINARI DEI VARI PACCHETTI/LAYOUT
+%-----------------------------------------------------------------------------------
+\setlength{\parindent}{0pt}%toglie indent paragrafo
+
+
+\tikzset{Thin_lines/.style={line width=0.5pt}}%crea stile linee sottili per grafici a torta
+
+\pgfplotstableset{col sep = tab}%dichiara separatore colonna in tabelle, per plottare i grafici a barre
+
+\pagestyle{plain}%setta stile pagine: non viene inserito nulla di default (ad es. a piè di pagina)
+
+\renewcommand{\underline}[1]{\ul{#1}}%sottolineatura con pacchetto ulem: permettte di usare shortcut di vscode
+
+%\renewcommand\labelitemi{--}%primo livello di elenco puntato è un trattino invece che punto
+
+\pgfplotsset{compat=newest}%setta versione alla più recente, evita problemi di compatibilità
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Custom titles
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\sectioncolorbox}[1]
+{%
+	{%
+			\Large\sffamily
+			\tcbox[size=title,colback=mutedblue!50, on line]{\color{white}\thesection\quad}\quad \color{mutedblue}\underline{#1}
+		}
+}
+
+\newcommand{\subsectioncolorbox}[1]
+{%
+	{%
+			\large\sffamily
+			\tcbox[size=small, colback=mutedblue!50, on line]{\color{white}\thesubsection\quad}\quad \color{mutedblue}\underline{#1}
+		}
+}
+
+\newcommand{\subsubsectioncolorbox}[1]
+{%
+	{%
+			\sffamily\color{mutedblue}
+			\tcbox[size=fbox,colback=mutedblue!50, on line]{\color{white}\thesubsubsection\quad}
+			\; \underline{#1}
+		}
+}
+
+\titleformat
+{\section}
+[block]
+{}
+{}
+{0pt}
+{\sectioncolorbox}
+[]
+
+\titleformat
+{\subsection}
+[block]
+{}
+{}
+{0pt}
+{\subsectioncolorbox}
+[]
+
+\titleformat
+{\subsubsection}
+[block]
+{}
+{}
+{0pt}
+{\subsubsectioncolorbox}
+[]
+
+
+
+\newcommand{\sfblue}[1]{
+	{\sffamily\textcolor{mutedblue}{#1}}
+}
+
+\newcommand{\sfred}[1]{
+	{\sffamily\textcolor{mutedred}{#1}}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Algorithm preudocode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SetKwProg{Fn}{}{:}{}
+\SetKw{And}{and}
+\SetKw{Or}{or}
+\SetKw{Downto}{downto}
+\SetKw{Print}{print}
+\SetKw{KwTo}{to}
+\SetKw{KwFrom}{from}
+\SetKw{KwTrue}{true}
+\SetKw{KwNot}{not}
+\SetKw{KwFalse}{false}
+
+
+\SetKwFunction{Push}{push}
+\SetKwFunction{Top}{top}
+\SetKwFunction{Pop}{pop}
+
+
+\SetKwData{Int}{int}
+\SetKwData{Bool}{bool}
+\SetKwData{Void}{void}
+\SetKwData{Stack}{Stack}
+\SetKwData{Set}{Set}
+\SetKwData{Item}{Item}
+\SetKwData{Graph}{Graph}
+\SetKwData{Node}{Node}
+\SetKwData{Queue}{Queue}
+\SetKwData{PriorityQueue}{PriorityQueue}
+
+\SetKwComment{Comment}{$\triangleright$\ }{}
+
+\RestyleAlgo{plain}
+
+%RENDE STILE CAPITOLI UGUALI AD AMSART PUR MANTENENDO I CAPITOLI
+%-----------------------------------------------------------------------------------
+%\renewcommand{\contentsname}{\centering Indice}%Cambia nome che appare in cima a indice
+
+%\makeatletter
+%\numberwithin{section}{chapter}
+%\def\@secnumfont{\mdseries}
+%\def\section{\@startsection{section}{1}%
+% \z@{.7\linespacing\@plus\linespacing}{.5\linespacing}%
+%{\normalfont\scshape\centering}}
+%\def\subsection{\@startsection{subsection}{2}%
+%\z@{.5\linespacing\@plus.7\linespacing}{-.5em}%
+%{\normalfont\bfseries}}
+
+%\patchcmd{\@thm}{\let\thm@indent\indent}{\let\thm@indent\noindent}{}{}
+%\patchcmd{\@thm}{\thm@headfont{\scshape}}{\thm@headfont{\bfseries}}{}{}
+
+%\makeatother
+
+%\newtheorem{thm}{Theorem}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  definisce liste di forrmule, di comandi e di teoremi  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%  Definizione
+%%%%%%%%%%%%%%%%
+% \newsavebox{\defbox}
+% \newcounter{defcount}
+% \newcommand{\deflist}{\Large Definizioni}
+% \newlistof{defs}{def}{\deflist}
+%
+% \newenvironment{definizione}[1]{%
+% 	\refstepcounter{defcount}%
+% 	\def\deftitle{#1}%
+% 	\begin{lrbox}{\defbox}%
+% 		\begin{minipage}{\dimexpr\linewidth-2\tabcolsep\relax}%
+% 			}{%
+% 		\end{minipage}%
+% 	\end{lrbox}%
+% 	\noindent\vskip3mm
+% 	\begin{tabular}{p{\dimexpr\linewidth-2\tabcolsep\relax}}
+% 		\toprule
+% 		\textbf{Definizione \arabic{defcount}:} \textit{\deftitle} \\
+% 		\midrule
+% 		\usebox{\defbox}                                           \\
+% 		\bottomrule
+% 	\end{tabular}%
+% 	\addcontentsline{def}{defs}{\protect\numberline{\thedefcount}\deftitle}
+% 	\noindent\vskip3mm
+% }
+% %%%%%%%%%%%%%%%%
+% %  Teorema
+% %%%%%%%%%%%%%%%%
+% \newsavebox{\theoremsbox}
+% \newcounter{theoremscount}
+% \newcommand{\theoremlist}{\Large Teoremi e Assiomi}
+% \newlistof{theorems}{the}{\theoremlist}
+%
+% \newenvironment{teorema}[1]{%
+% 	\refstepcounter{theoremscount}%
+% 	\def\teorematitle{#1}%
+% 	\begin{lrbox}{\theoremsbox}%
+% 		\begin{minipage}{\dimexpr\linewidth-2\tabcolsep\relax}%
+% 			}{%
+% 		\end{minipage}%
+% 	\end{lrbox}%
+% 	\noindent\vskip3mm
+% 	\begin{tabular}{p{\dimexpr\linewidth-2\tabcolsep\relax}}
+% 		\toprule
+% 		\textbf{Teorema \arabic{theoremscount}:} \textit{\teorematitle} \\
+% 		\midrule
+% 		\usebox{\theoremsbox}                                           \\
+% 		\bottomrule
+% 	\end{tabular}%
+% 	\addcontentsline{the}{theorems}{\protect\numberline{\thetheoremscount}\teorematitle}
+% 	\noindent\vskip3mm
+% }
+%
+% %%%%%%%%%%%%%%%%
+% %  Assioma
+% %%%%%%%%%%%%%%%%
+% \newsavebox{\assiomabox}
+% \newenvironment{assioma}[1]{%
+% 	\refstepcounter{theoremscount}%
+% 	\def\assiomatitle{#1}%
+% 	\begin{lrbox}{\assiomabox}%
+% 		\begin{minipage}{\dimexpr\linewidth-2\tabcolsep\relax}%
+% 			}{%
+% 		\end{minipage}%
+% 	\end{lrbox}%
+% 	\noindent\vskip3mm
+% 	\begin{tabular}{p{\dimexpr\linewidth-2\tabcolsep\relax}}
+% 		\toprule
+% 		\textbf{Assioma \arabic{theoremscount}:} \textit{\assiomatitle} \\
+% 		\midrule
+% 		\usebox{\assiomabox}                                            \\
+% 		\bottomrule
+% 	\end{tabular}%
+% 	\addcontentsline{the}{theorems}{\protect\numberline{\thetheoremscount}\assiomatitle}
+% 	\noindent\vskip3mm
+% }
+%
+% %%%%%%%%%%%%%%%%
+% %  Formula
+% %%%%%%%%%%%%%%%%
+% \newsavebox{\formulabox}
+% \newcounter{formulascount}
+% \newcommand{\formulalist}{\Large Formule}
+% \newlistof{formulas}{for}{\formulalist}
+%
+% \newenvironment{formula}[1]{%
+% 	\refstepcounter{formulascount}%
+% 	\def\formulatitle{#1}%
+% 	\begin{lrbox}{\formulabox}%
+% 		\begin{minipage}{\dimexpr\linewidth-2\tabcolsep\relax}%
+% 			}{%
+% 		\end{minipage}%
+% 	\end{lrbox}%
+% 	\noindent\vskip3mm
+% 	\begin{tabular}{p{\dimexpr\linewidth-2\tabcolsep\relax}}
+% 		\toprule
+% 		\textbf{Formula \arabic{formulascount}:} \textit{\formulatitle} \\
+% 		\midrule
+% 		\usebox{\formulabox}                                            \\
+% 		\bottomrule
+% 	\end{tabular}%
+% 	\addcontentsline{for}{formulas}{\protect\numberline{\theformulascount}\formulatitle}
+% 	\noindent\vskip3mm
+% }
+% %%%%%%%%%%%%%%%%
+% %  Esercizio
+% %%%%%%%%%%%%%%%%
+% \newsavebox{\eserciziobox}
+% \newcounter{exercisescount}
+% \newcommand{\exerciselist}{\Large Esercizi}
+% \newlistof{exercises}{exe}{\exerciselist}
+%
+% \newenvironment{esercizio}[1]{%
+% 	\refstepcounter{exercisescount}%
+% 	\def\eserciziotitle{#1}%
+% 	\begin{lrbox}{\eserciziobox}%
+% 		\begin{minipage}{\dimexpr\linewidth-2\tabcolsep\relax}%
+% 			}{%
+% 		\end{minipage}%
+% 	\end{lrbox}%
+% 	\noindent\vskip3mm
+% 	\begin{tabular}{p{\dimexpr\linewidth-2\tabcolsep\relax}}
+% 		\toprule
+% 		\textbf{Esercizio \arabic{exercisescount}:} \textit{\eserciziotitle} \\
+% 		\midrule
+% 		\usebox{\eserciziobox}                                               \\
+% 		\bottomrule
+% 	\end{tabular}%
+% 	\addcontentsline{exe}{exercises}{\protect\numberline{\theexercisescount}\eserciziotitle}
+% 	\noindent\vskip3mm
+% }
+
+
+%%%%%%%%%%%%%%%%
+%  Definizione
+%%%%%%%%%%%%%%%%
+\newsavebox{\defbox}
+\newcounter{defcount}
+\newcommand{\deflist}{\Large Definizioni}
+\newlistof{defs}{def}{\deflist}
+
+\newenvironment{definizione}[1]{%
+
+	\refstepcounter{defcount}%
+	\def\deftitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[colback=mutedred!5, boxrule=1pt, colbacktitle = mutedred!40,
+			title={\textbf{Definizione \arabic{defcount}:} \textit{\deftitle}}]
+
+		}{%
+	\end{tcolorbox}
+	\addcontentsline{def}{defs}{\protect\numberline{\thedefcount}\deftitle}
+}
+
+%%%%%%%%%%%%%%%%
+%  Teorema
+%%%%%%%%%%%%%%%%
+\newsavebox{\theoremsbox}
+\newcounter{theoremscount}
+\newcommand{\theoremlist}{\Large Teoremi e Assiomi}
+\newlistof{theorems}{the}{\theoremlist}
+
+\newenvironment{teorema}[1]{%
+	\refstepcounter{theoremscount}%
+	\def\teorematitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[colback=mutedblue!5, boxrule=1pt, colbacktitle=mutedblue!40,
+			title={\textbf{Teorema \arabic{theoremscount}:} \textit{\teorematitle}}]
+		}{%
+	\end{tcolorbox}
+	\addcontentsline{the}{theorems}{\protect\numberline{\thetheoremscount}\teorematitle}
+}
+
+%%%%%%%%%%%%%%%%
+%  Assioma
+%%%%%%%%%%%%%%%%
+\newenvironment{assioma}[1]{%
+	\refstepcounter{theoremscount}%
+	\def\assiomatitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[colback=mutedblue!5, boxrule=1pt, colbacktitle = mutedblue!40,
+			title={\textbf{Assioma \arabic{theoremscount}:} \textit{\assiomatitle}}]
+		}{%
+	\end{tcolorbox}
+	\addcontentsline{the}{theorems}{\protect\numberline{\thetheoremscount}\assiomatitle}
+}
+
+%%%%%%%%%%%%%%%%
+%  Formula
+%%%%%%%%%%%%%%%%
+\newcounter{formulascount}
+\newcommand{\formulalist}{\Large Formule}
+\newlistof{formulas}{for}{\formulalist}
+
+\newenvironment{formula}[1]{%
+	\refstepcounter{formulascount}%
+	\def\formulatitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[colback=mutedpurple!5, boxrule=1pt, colbacktitle = mutedpurple!30,
+			title={\textbf{Formula \arabic{formulascount}:} \textit{\formulatitle}}]
+		}{%
+	\end{tcolorbox}
+	\addcontentsline{for}{formulas}{\protect\numberline{\theformulascount}\formulatitle}
+}
+
+%%%%%%%%%%%%%%%%
+%  Esercizio
+%%%%%%%%%%%%%%%%
+\newcounter{exercisescount}
+\newcommand{\exerciselist}{\Large Esercizi}
+\newlistof{exercises}{exe}{\exerciselist}
+
+\newenvironment{esercizio}[1]{%
+	\refstepcounter{exercisescount}%
+	\def\eserciziotitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[colback=orange!5, boxrule=1pt, colbacktitle = orange!30,
+			title={\textbf{Esercizio \arabic{exercisescount}:} \textit{\eserciziotitle}}]
+		}{%
+	\end{tcolorbox}
+	\addcontentsline{exe}{exercises}{\protect\numberline{\theexercisescount}\eserciziotitle}
+}
+
+%%%%%%%%%%%%%%%%
+%  Algoritmo
+%%%%%%%%%%%%%%%%
+\newcounter{myalgorithmscount}
+\newcommand{\algorithmlist}{\Large Algoritmi}
+\newlistof{myalgorithms}{alg}{\algorithmlist}
+
+\newenvironment{algoritmo}[1]{%
+	\refstepcounter{myalgorithmscount}%
+	\def\algoritmotitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[colback=mutedpurple!5, boxrule=1pt, colbacktitle = mutedpurple!40,
+			title={\textbf{Algoritmo \arabic{myalgorithmscount}:} \textit{\algoritmotitle}}]
+		}{%
+	\end{tcolorbox}
+	\addcontentsline{alg}{myalgorithms}{\protect\numberline{\themyalgorithmscount}\algoritmotitle}
+}
+
+\newenvironment{algoritmo*}[1]{%
+	\def\algoritmotitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[colback=mutedpurple!5, boxrule=1pt, colbacktitle = mutedpurple!40,
+			title={\textbf{Algoritmo:} \textit{\algoritmotitle}}]
+		}{%
+	\end{tcolorbox}
+}
+
+
+%%%%%%%%%%%%%%%%
+%  Comandi
+%%%%%%%%%%%%%%%%
+\newcounter{commandscount}
+\newcommand{\commandlist}{\Large Comandi}
+\newlistof{commands}{com}{\commandlist}
+
+\newcommand{\command}[4]{
+	\vskip3mm
+	\refstepcounter{commandscount}
+	\begin{tabularx}{\textwidth}{@{}l>{\raggedleft\arraybackslash}X@{}}
+		\toprule
+		\arabic{commandscount}. \texttt{#1} \textcolor{gray}{\texttt{#2}} & #3 \\
+		\multicolumn{2}{l}{#4}                                                 \\
+		\bottomrule
+	\end{tabularx}
+	\addcontentsline{com}{commands}{\protect\numberline{\thecommandscount}#1}\par
+}
+
+
+%%%%%%%%%%%%%%%%
+%  Incomprensioni
+%%%%%%%%%%%%%%%%
+\newcounter{incomprensionicount}
+\newcommand{\incomprensionilist}{\Large Incomprensioni}
+\newlistof{incomprensioni}{inc}{\incomprensionilist}
+
+\newcommand{\incomprensione}[1]{
+	\refstepcounter{incomprensionicount}
+	\addcontentsline{inc}{incomprensioni}{\protect\numberline{\theincomprensionicount}#1}\par
+	\vskip3mm
+	{\color{red}\hrulefill\textcolor{red}{\textit{Incomprensione - #1}}\hrulefill}
+	\vskip3mm
+}
+
+
+% \newcounter{lawscount}
+% \newcommand{\lawslist}{\Large Leggi}
+% \newlistof{laws}{law}{\lawslist}
+%
+% \newcommand{\law}[2]{
+% 	\refstepcounter{lawscount}
+% 	\bigbox[\linewidth]{
+% 		\textbf{Legge \arabic{lawscount}:} \textit{#1}\\
+% 		#2}
+% 	\addcontentsline{law}{laws}{\protect\numberline{\thelawscount}#1}\par
+% }
+%
+%
+%
+% % Definition counter and list
+% \newcounter{defcount}
+% \newcommand{\deflist}{\Large Definizioni}
+% \newlistof{defs}{def}{\deflist}
+%
+% \newcommand{\definizione}[2]{
+% 	\refstepcounter{defcount}
+% 	\vskip3mm
+% 	\begin{tabularx}{\textwidth}{X}
+% 		\toprule
+% 		\textbf{Definizione \arabic{defcount}:} \textit{#1} \\
+% 		\midrule
+% 		#2                                                  \\
+% 		\bottomrule
+% 	\end{tabularx}
+% 	\addcontentsline{def}{defs}{\protect\numberline{\thedefcount}#1}\par
+% }
+%
+% % Theorem/Axiom counter and list
+% \newcounter{theoremscount}
+% \newcommand{\theoremlist}{\Large Teoremi e Assiomi}
+% \newlistof{theorems}{the}{\theoremlist}
+%
+% \newcommand{\teorema}[2]{
+% 	\refstepcounter{theoremscount}
+% 	\vskip3mm
+% 	\begin{tabularx}{\textwidth}{X}
+% 		\toprule
+% 		\textbf{Teorema \arabic{theoremscount}:} \textit{#1} \\
+% 		\midrule
+% 		#2                                                   \\
+% 		\bottomrule
+% 	\end{tabularx}
+% 	\addcontentsline{the}{theorems}{\protect\numberline{\thetheoremscount}#1}\par
+% }
+%
+% \newcommand{\assioma}[2]{
+% 	\refstepcounter{theoremscount}
+% 	\vskip3mm
+% 	\begin{tabularx}{\textwidth}{X}
+% 		\toprule
+% 		\textbf{Assioma \arabic{theoremscount}:} \textit{#1} \\
+% 		\midrule
+% 		#2                                                   \\
+% 		\bottomrule
+% 	\end{tabularx}
+% 	\addcontentsline{the}{theorems}{\protect\numberline{\thetheoremscount}#1}\par
+% }
+%
+%
+% % Formula counter and list
+% \newcounter{formulascount}
+% \newcommand{\formulalist}{\Large Formule}
+% \newlistof{formulas}{for}{\formulalist}
+%
+% \newcommand{\formula}[2]{
+% 	\refstepcounter{formulascount}
+% 	\vskip3mm
+% 	\begin{tabularx}{\textwidth}{X}
+% 		\toprule
+% 		\textbf{Formula \arabic{formulascount}:} \textit{#1} \\
+% 		\midrule
+% 		#2                                                   \\
+% 		\bottomrule
+% 	\end{tabularx}
+% 	\addcontentsline{for}{formulas}{\protect\numberline{\theformulascount}#1}\par
+% }
+%
+% % Esercizio counter and list
+% \newcounter{exercisescount}
+% \newcommand{\exerciselist}{\Large Esercizi}
+% \newlistof{exercises}{exe}{\exerciselist}
+%
+% \newcommand{\esercizio}[2]{
+% 	\refstepcounter{exercisescount}
+% 	\vskip3mm
+% 	\begin{tabularx}{\textwidth}{X}
+% 		\toprule
+% 		\textbf{Esercizio \arabic{exercisescount}:} \textit{#1} \\
+% 		\midrule
+% 		#2                                                      \\
+% 		\bottomrule
+% 	\end{tabularx}
+% 	\addcontentsline{exe}{exercises}{\protect\numberline{\theexercisescount}#1}\par
+% }
+%
+% \newcommand{\esercizioNB}[2]{
+% 	\refstepcounter{exercisescount}
+% 	\textbf{Esercizio \arabic{exercisescount}:} \textit{#1}\\
+% 	#2
+% 	\addcontentsline{exe}{exercises}{\protect\numberline{\theexercisescount}#1}\par
+% }
+
+
+
+
+%CREA ENVIRONMENT "CODE", PER LISTARE SNIPPET IN C++
+%-----------------------------------------------------------------------------------
+\newcounter{my_code_counter}
+\setcounter{my_code_counter}{0}
+
+\definecolor{pink}{RGB}{224, 110, 160}
+\definecolor{comment}{RGB}{100,100,105}
+\definecolor{string}{RGB}{241,125,109}
+\definecolor{std_functions}{RGB}{155,114,204}
+\definecolor{std_members}{RGB}{190,163,223}
+\definecolor{functions}{RGB}{66, 140, 162}
+\definecolor{numbers}{RGB}{195, 181, 112}
+\definecolor{light}{rgb}{0.5, 0.5, 0.5}
+
+\lstdefinelanguage{cpp}{
+	classoffset = 1, keywordstyle = \color{pink}\textbf,
+	morekeywords = {class, continue, default, enum, false, new, null, private, protected, public, static, true, void, return, do, for, if, else, switch, while, try, int, long, char, float, double, short, unsigned, auto, using, namespace, constexpr},
+	%
+	%
+	classoffset = 2,keywordstyle = \color{std_functions},
+	morekeywords = {begin, end, push_back, push, size, lenght, resize, empty, at, find, emplace, emplace_back, erase, now, count, cout, endl, sort},
+	%
+	%
+	classoffset = 3,keywordstyle = \color{std_members},
+	morekeywords = {std, chrono, high_resolution_clock, vector, list, unordered_set, unordered_map},
+	%
+	%
+	classoffset = 4,keywordstyle = \color{functions},
+	morekeywords = {main, Polinomial, char_to_node, allowed_functions, allowed_sequences, contained, detect_exponential, get_priority_brackets, fix_syntax, checkSyntax},
+	%
+	%
+	%
+	%
+	classoffset = 0,
+	morecomment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	morestring=[b]",
+	morestring=[d]',
+	stringstyle = \color{string},
+	commentstyle = \color{comment}\textit
+}
+
+\lstset{
+literate=
+	{á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+{Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+{à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+{À}{{\`A}}1 {È}{{\'E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+{ä}{{\"a}}1 {ë}{{\"e}}1 {ï}{{\"i}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+{Ä}{{\"A}}1 {Ë}{{\"E}}1 {Ï}{{\"I}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+{â}{{\^a}}1 {ê}{{\^e}}1 {î}{{\^i}}1 {ô}{{\^o}}1 {û}{{\^u}}1
+{Â}{{\^A}}1 {Ê}{{\^E}}1 {Î}{{\^I}}1 {Ô}{{\^O}}1 {Û}{{\^U}}1
+{œ}{{\oe}}1 {Œ}{{\OE}}1 {æ}{{\ae}}1 {Æ}{{\AE}}1 {ß}{{\ss}}1
+{ű}{{\H{u}}}1 {Ű}{{\H{U}}}1 {ő}{{\H{o}}}1 {Ő}{{\H{O}}}1
+{ç}{{\c c}}1 {Ç}{{\c C}}1 {ø}{{\o}}1 {å}{{\r a}}1 {Å}{{\r A}}1
+{€}{{\euro}}1 {£}{{\pounds}}1,
+extendedchars=true,
+breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+breaklines=true,                 % sets automatic line breaking
+captionpos=t,                    % sets the caption-position to bottom 
+firstnumber=1,                   % start line enumeration with line 1
+frame=tblr,                        % adds a frame around the code
+keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+language=cpp,                 % the language of the code
+numbersep=5pt,                   % how far the line-numbers are from the code
+showspaces=false,
+showstringspaces=false,          % underline spaces within strings only
+showtabs=false,                  % show tabs within strings adding particular underscores
+stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+tabsize=2,
+belowcaptionskip=10pt,
+abovecaptionskip=10pt,
+framesep=15pt,
+numbers = left,
+numberstyle=\tiny\color{light},
+xleftmargin = 0.035\textwidth,
+xrightmargin = 0.035\textwidth
+}
+
+\lstnewenvironment{code}[2]
+{\nl
+	\refstepcounter{my_code_counter}
+	\label{#2}
+	\qquad\textit{\rm{CODE SNIPPET\;\arabic{my_code_counter}\quad\quad #1}}
+}
+{\nl}
+
+
+
+
+%COMANDI CARRARA
+%-----------------------------------------------------------------------------------
+\newcommand{\s}{\, {\rm{s}}}
+\newcommand{\m}{\, {\rm{m}}}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\F}{\mathbb F}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\MCD}[2]{{\rm{MCD}} ( {#1},{#2} ) }
+\newcommand{\mcm}[2]{{\rm{mcm}} ( {#1},{#2} )}
+\newcommand{\Imm}{{\mathrm{Im}}}
+
+%\renewcommand{\sin}[1]{  {\rm{sin}} {\left( {#1} \right) }}
+\renewcommand{\aa}{\alpha}
+\renewcommand{\AA}{\alpha}
+\newcommand{\tg}{{\rm{tg}}}
+\newcommand{\cotg}{{\rm{cotg}}}
+%\newcommand{\sec}{{\rm{sec}}}
+\newcommand{\cosec}{{\rm{cosec}}}
+\newcommand{\asin}{{\rm{arcsin}}}
+\newcommand{\acos}{{\rm{arccos}}}
+\newcommand{\atg}{{\rm{arctg}}}
+\newcommand{\dx}{\, {\rm{d}}x}
+\newcommand{\dt}{\, {\rm{d}}t}
+\newcommand{\e}{\, {\rm{e}}}
+
+\newcommand{\intestazione}{
+	\title[]{Liceo \emph{B. Russell} -- a.s. 2021/2022 -- classe V C}}
+
+\newcommand{\studente}{Studente: $\underline{\phantom{cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc}}$}
+
+\newcommand{\titolo}[1]{\vskip3mm\begin{center}{\bf{{#1}}}\end{center}}
+\newcommand{\titolosc}[1]{\vskip3mm\begin{center}{\sc{{#1}}}\end{center}\vskip3mm}
+
+\newcommand{\fine}{
+	%\vskip1mm
+	\begin{flushright}
+		$\Box $
+	\end{flushright}
+}
+
+%Per esercizi in \rm
+%\newcommand{\esercizio}[1]
+%{\begin{Ese}
+%{\rm{
+%{#1}
+%}}
+%\end{Ese}
+%}
+
+\newcommand{\quesito}[1]
+{\begin{ques}
+		{\rm{
+				{#1}
+			}}
+	\end{ques}
+}
+
+\newcommand{\problema}[1]
+{\begin{probl}
+		{\rm{
+				{#1}
+			}}
+	\end{probl}
+}
+
+
+%FRECCE, BOX E ALTRO
+%-----------------------------------------------------------------------------------
+%freccia a destra
+\newcommand{\rarr}{$\rightarrow$}
+
+%freccia verso il basso
+\newcommand{\darr}{
+	\vskip0mm
+	\makebox[\textwidth][c]{$\Downarrow$}
+	\vskip0mm
+}
+
+%box a larghezza fissa; comando aux
+\newcommand{\fixedSizeTextbox}[2][\textwidth]{
+	\noindent
+	\vskip3mm
+	\noindent\makebox[\textwidth][c]{
+		\framebox{
+			\begin{minipage}[c]{#1}
+				\begin{center}
+					\noindent#2
+				\end{center}
+			\end{minipage}
+		}
+	}
+	\vskip3mm
+}
+
+\newcommand{\bigbox}[2][\linewidth]{
+	\vskip3mm
+	\noindent
+	\framebox[#1]{
+		\begin{minipage}[t]{0.97#1}
+			#2
+		\end{minipage}
+	}
+	\vskip3mm
+}
+
+%box a larghezza variabile; comando aux
+\newcommand{\adaptiveTextbox}[1]{
+	\noindent\vskip3mm
+	\makebox[\textwidth][c]{
+		\framebox{\noindent#1}
+	}
+	\vskip3mm
+}
+
+%comando che crea box orizzontale in base a larghezza contenuto
+\newlength{\myfoo}
+\newcommand{\textbox}[1]{\settowidth{\myfoo}{#1}%
+	\ifnum\textwidth>\myfoo{\adaptiveTextbox{#1}}\else{\bigbox[\linewidth]{#1}}\fi
+}
+
+%va a capo, serve a poco
+% \newcommand{\nl}{\hfill \\}
+
+%cread \dotfill con punti che sono centrati verticalmente
+\makeatletter
+\newcommand\cdotfill{%
+\leavevmode\cleaders\hb@xt@.44em{\hss$\cdot$\hss}\hfill\kern\z@
+}
+
+%riempie orizzontalmente di tratti
+\newcommand{\tratti}{
+	\vskip0mm
+	\noindent
+	\cdotfill
+	\vskip0mm
+}
+
+%citazione letteraria
+\newcommand{\cit}[2]{
+	\vskip3mm
+	\begin{flushleft}
+		\begin{large}
+			«
+		\end{large}
+	\end{flushleft}
+	\begin{center}
+		\begin{minipage}{0.8\textwidth}
+			\textit{#1}
+			\begin{flushright}
+				\scriptsize{\textit{- #2}}
+			\end{flushright}
+		\end{minipage}
+	\end{center}
+	\begin{flushright}
+		\large»
+	\end{flushright}
+}
+
+
+\tikzstyle{albero_orizz}=[grow'=right,
+edge from parent path={(\tikzparentnode.east) -- ++(0.5cm,0) |- (\tikzchildnode.west)}, growth parent anchor=east, child anchor=left, auto]
+
+
+%formula in box centrara senza descrizione
+\newcommand{\f}[1]{
+	\vskip3mm
+	\begin{center}
+		\boxed{#1}
+	\end{center}
+}
+
+%formula in box a sinistra con descrizione a destra
+\newcommand{\Formula}[2]{
+	\vskip0mm
+	\boxed{#1}
+	\hfill
+	\begin{footnotesize}
+		#2
+	\end{footnotesize}
+	\vskip5mm
+}
+
+
+%crea box in risalto con indicizzazione -- ref con numero: \ref -- ref con nume: \hyperlink
+%se non viene indicato un label si può far riference con il suo numero
+\newcounter{n_points}
+\setcounter{n_points}{0}
+\newcommand{\Point}[2][\arabic{n_points}]{
+	\vskip3mm
+	\refstepcounter{n_points}\label{#1}
+	\hypertarget{#1}{
+		\noindent\framebox{\textit{\arabic{n_points}. #2}}
+	}\vskip3mm\noindent
+}
+
+%crea box in risalto senza indicizzazione
+\newcommand{\point}[1]{
+	\vskip3mm
+	\hypertarget{#1}{
+		\noindent\framebox{\textit{#1}}
+	}
+	\vskip3mm\noindent
+}
+
+%crea linea orizzontale
+\newcommand{\hr}{\vskip3mm\noindent\hrule\vskip3mm}
+
+%crea titoletto
+\newcommand{\ter}[1]{
+	\vskip10mm
+	\noindent\hrulefill
+	\framebox{#1}\hrulefill
+	\vskip0mm
+}
+
+%definisce il simbolo uguale per definizione(quello che usa sempre il Moggio!)
+\newcommand*{\defeq}{\stackrel{\text{def}}{=}}
+
+%definisce tema di forest per fare alberi orizzontali con bracci quadrati
+\forestset{
+declare dimen={fork sep}{0.5em},
+forked edge'/.style={
+edge={rotate/.option=!parent.grow},
+edge path'={(!u.parent anchor) -- ++(\forestoption{fork sep},0) |- (.child anchor)},
+},
+forked edge/.style={
+		on invalid={fake}{!parent.parent anchor=children},
+		child anchor=parent,
+		forked edge',
+	},
+forked edges/.style={for nodewalk={#1}{forked edge}},
+forked edges/.default=tree,
+}
+
+%definisce tema di forest per fare alberi orizzontali come alberi di dyrectory
+\forestset{
+declare dimen register=folder indent,
+folder indent=.45em,
+folder/.style={
+parent anchor=-children last,
+anchor=parent first,
+calign=child,
+calign primary child=1,
+for children={
+child anchor=parent,
+anchor=parent first,
+edge={rotate/.option=!parent.grow},
+edge path'/.expanded={
+([xshift=\forestregister{folder indent}]!u.parent anchor) |- (.child anchor)
+},
+},
+after packing node={
+		if n children=0{}{
+				tempdiml=l_sep()-l("!1"),
+				tempdims={-abs(max_s("","")-min_s("",""))-s_sep()},
+				for children={
+						l+=tempdiml,
+						s+=tempdims()*(reversed()-0.5)*2,
+					},
+			},
+	},
+}
+}
+%
+\newcommand{\placedate}[2]{\begin{center}
+		\noindent\framebox{#1}\hrulefill\framebox{#2}
+	\end{center}}
+%
+\newcommand{\Var}{\mathbb{V}ar}
+
+\newcommand{\license}[1]{
+	\begin{center}
+		\noindent\textit{#1} is licensed under \href{https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1}{\underline{CC BY 4.0}} \ccby.
+		\vskip3mm
+		\ccCopy \; 2023 \href{https://github.com/mattia-marini}{\underline{Mattia Marini}}
+	\end{center}
+}
+
+
+
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{myred}{rgb}{0.869, 0.35, 0.32}
+\definecolor{mygreen}{rgb}{0.659, 0.76, 0.53}
+\definecolor{myyellow}{rgb}{0.824, 0.78, 0.55}
+\definecolor{mypurp}{rgb}{0.58,0,0.82}
+\definecolor{mypink}{rgb}{0.784, 0.549, 0.627}
+
+\tikzset {
+	multi attribute/.style = { attribute , double distance=1.5pt },
+	derived attribute/.style = { attribute , dashed },
+	total/.style = { double distance=1.5pt },
+	every entity/.style = { draw=myred, fill=myred!20 },
+	every attribute/.style = { draw=mypurp, fill=mypurp!20 },
+	every relationship/.style = { draw=mygreen, fill=mygreen!20 }
+}
+
+\newcommand {\key} [1] {\underline{#1}}
+
+\lstdefinelanguage{json}
+{
+	morestring=[b]",
+	morestring=[d]'
+}
+
+\lstset{
+	classoffset = 0,
+	language=SQL,
+	basicstyle={\small\ttfamily},
+	belowskip=3mm,
+	breakatwhitespace=true,
+	breaklines=true,
+	columns=flexible,
+	framexleftmargin=0.25em,
+	frameshape={}{yy}{}{}, %To remove to vertical lines on left, set `frameshape={}{}{}{}`
+	commentstyle=\color{mygray},
+	keywordstyle=\color{myred},
+	numberstyle=\tiny\color{mypink},
+	stringstyle=\color{mygreen},
+	numbers=none, %If you want line numbers, set `numbers=left`
+	showstringspaces=false,
+	tabsize=3,
+	xleftmargin =1em
+}
+
+\lstdefinestyle{SQL}{
+	classoffset=0,
+	morekeywords={PRAGMA, INTEGER, TEXT},
+	classoffset = 1,
+	morekeywords={INTEGER},
+	keywordstyle=\color{myyellow}
+}
+
+\newcommand{\inputsql}[1]{%
+	\lstinputlisting[
+		classoffset=0,
+		frame=none,
+		language=SQL,
+		style=SQL,
+	]{#1}%
+}
+
+\endofdump
+
+% pdftex -ini -jobname=".preamble" "&pdflatex" mylatexformat.ltx .preamble.tex
