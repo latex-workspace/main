@@ -2,3 +2,36 @@
 	path = algoritmi_strutture_dati
 	url = https://github.com/latex-workspace/algoritmi-strutture-dati
   branch = main
+[submodule "analisi_1"]
+	path = analisi_1
+	url = https://github.com/latex-workspace/analisi-1.git
+[submodule "calcolatori"]
+	path = calcolatori
+	url = https://github.com/latex-workspace/calcolatori.git
+[submodule "databases"]
+	path = databases
+	url = https://github.com/latex-workspace/databases.git
+[submodule "fondamenti-matematici-informatica"]
+	path = fondamenti-matematici-informatica
+	url = https://github.com/latex-workspace/fondamenti-matematici-per-informatica.git
+[submodule "geometria_e_algebra_lineare"]
+	path = geometria_e_algebra_lineare
+	url = https://github.com/latex-workspace/geometria-algebra-lineare.git
+[submodule "lfc"]
+	path = lfc
+	url = https://github.com/latex-workspace/lfc.git
+[submodule "logica"]
+	path = logica
+	url = https://github.com/latex-workspace/logica.git
+[submodule "reti"]
+	path = reti
+	url = https://github.com/latex-workspace/reti.git
+[submodule "segnali"]
+	path = segnali
+	url = https://github.com/latex-workspace/segnali.git
+[submodule "sistemi_operativi"]
+	path = sistemi_operativi
+	url = https://github.com/latex-workspace/sistemi-operativi.git
+[submodule "probabilita_statistica"]
+	path = probabilita_statistica
+	url = https://github.com/latex-workspace/probabilita-statistica.git

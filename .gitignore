@@ -1,6 +1,25 @@
 *
 
 !algoritmi_strutture_dati/
+!analisi_1/
+!calcolatori/
+!databases/
+!fondamenti-matematici-informatica/
+!geometria_e_algebra_lineare/
+!git_for_dummies/
+!lfc/
+!logica/
+!marini_fx_linker/
+!mergify/
+!oii/
+!relazione_prog_web/
+!reti/
+!ripetizioni/
+!segnali/
+!sistemi_operativi/
+!probabilita_statistica/
+
+
 !.gitignore
 !.preamble.fmt
 !.preamble.tex
