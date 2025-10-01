@@ -1,0 +1,3 @@
+[submodule "algoritmi_strutture_dati"]
+	path = algoritmi_strutture_dati
+	url = https://github.com/latex-workspace/algoritmi-strutture-dati
