@@ -73,3 +73,6 @@
 [submodule "secondary"]
 	path = secondary
 	url = https://github.com/latex-workspace/secondary.git
+[submodule "intro_to_ml"]
+	path = intro_to_ml
+	url = https://github.com/latex-workspace/introduction-to-ml.git
