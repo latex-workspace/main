@@ -70,3 +70,6 @@
 	path = relazione_prog_web
 	url = https://github.com/latex-workspace/relazione-prog-web.git
 	branch = main
+[submodule "secondary"]
+	path = secondary
+	url = https://github.com/latex-workspace/secondary.git

@@ -1,5 +1,10 @@
 *
 
+!.gitignore
+!.preamble.fmt
+!.preamble.tex
+!README.md
+
 !algoritmi_strutture_dati/
 !analisi_1/
 !calcolatori/
@@ -18,9 +23,4 @@
 !segnali/
 !sistemi_operativi/
 !probabilita_statistica/
-
-
-!.gitignore
-!.preamble.fmt
-!.preamble.tex
-!.README.md
+!secondary
