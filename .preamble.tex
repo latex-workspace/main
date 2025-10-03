@@ -26,7 +26,11 @@
 \usepackage[nameinlink, italian]{cleveref}
 
 \usepackage{mathrsfs}
+
 \usepackage{tcolorbox}%per box colorati
+\tcbuselibrary{skins}
+\tcbuselibrary{breakable}
+
 \usepackage[ruled, vlined]{algorithm2e}
 \usepackage{subcaption}
 
@@ -431,6 +435,17 @@
 	\addcontentsline{exe}{exercises}{\protect\numberline{\theexercisescount}\eserciziotitle}
 }
 
+\newenvironment{esercizioL}[1]{%
+	\refstepcounter{exercisescount}%
+	\def\eserciziotitle{#1}%
+	\noindent\vskip3mm
+	\begin{tcolorbox}[enhanced, breakable, colback=orange!5, boxrule=1pt, colbacktitle = orange!30,
+			title={\textbf{Esercizio \arabic{exercisescount}:} \textit{\eserciziotitle}}]
+		}{%
+	\end{tcolorbox}
+	\addcontentsline{exe}{exercises}{\protect\numberline{\theexercisescount}\eserciziotitle}
+}
+
 %%%%%%%%%%%%%%%%
 %  Algoritmo
 %%%%%%%%%%%%%%%%
@@ -472,7 +487,11 @@
 	\begin{tabularx}{\textwidth}{@{}l>{\raggedleft\arraybackslash}X@{}}
 		\toprule
 		\arabic{commandscount}. \texttt{#1} \textcolor{gray}{\texttt{#2}} & #3 \\
-		\multicolumn{2}{l}{#4}                                                 \\
+		\multicolumn{2}{@{}l@{}}{
+		\begin{minipage}{\textwidth}
+			#4
+		\end{minipage}
+		}                                                                      \\
 		\bottomrule
 	\end{tabularx}
 	\addcontentsline{com}{commands}{\protect\numberline{\thecommandscount}#1}\par
