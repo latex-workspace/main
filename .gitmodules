@@ -5,51 +5,68 @@
 [submodule "analisi_1"]
 	path = analisi_1
 	url = https://github.com/latex-workspace/analisi-1.git
+	branch = main
 [submodule "calcolatori"]
 	path = calcolatori
 	url = https://github.com/latex-workspace/calcolatori.git
+	branch = main
 [submodule "databases"]
 	path = databases
 	url = https://github.com/latex-workspace/databases.git
+	branch = main
 [submodule "fondamenti-matematici-informatica"]
 	path = fondamenti-matematici-informatica
 	url = https://github.com/latex-workspace/fondamenti-matematici-per-informatica.git
+	branch = main
 [submodule "geometria_e_algebra_lineare"]
 	path = geometria_e_algebra_lineare
 	url = https://github.com/latex-workspace/geometria-algebra-lineare.git
+	branch = main
 [submodule "lfc"]
 	path = lfc
 	url = https://github.com/latex-workspace/lfc.git
+	branch = main
 [submodule "logica"]
 	path = logica
 	url = https://github.com/latex-workspace/logica.git
+	branch = main
 [submodule "reti"]
 	path = reti
 	url = https://github.com/latex-workspace/reti.git
+	branch = main
 [submodule "segnali"]
 	path = segnali
 	url = https://github.com/latex-workspace/segnali.git
+	branch = main
 [submodule "sistemi_operativi"]
 	path = sistemi_operativi
 	url = https://github.com/latex-workspace/sistemi-operativi.git
+	branch = main
 [submodule "probabilita_statistica"]
 	path = probabilita_statistica
 	url = https://github.com/latex-workspace/probabilita-statistica.git
+	branch = main
 [submodule "ripetizioni"]
 	path = ripetizioni
 	url = https://github.com/latex-workspace/ripetizioni.git
+	branch = main
 [submodule "mergify"]
 	path = mergify
 	url = https://github.com/latex-workspace/mergify.git
+	branch = main
 [submodule "oii"]
 	path = oii
 	url = https://github.com/latex-workspace/oii.git
+	branch = main
 [submodule "marini_fx_linker"]
 	path = marini_fx_linker
 	url = https://github.com/latex-workspace/marini-fx-linker.git
+	branch = main
 [submodule "git_for_dummies"]
 	path = git_for_dummies
 	url = https://github.com/latex-workspace/git-for-dummies.git
+	branch = main
 [submodule "relazione_prog_web"]
 	path = relazione_prog_web
 	url = https://github.com/latex-workspace/relazione-prog-web.git
+	branch = main
