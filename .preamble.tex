@@ -19,7 +19,7 @@
 \usepackage{etoolbox}%per sistemare stile (renderlo come amsart pur usando amsbook con capitoli)
 \usepackage{tocloft}%per liste di comandi e teoremi
 \usepackage{float}%per posizionamento tabelle
-\usetikzlibrary{er, positioning,patterns}
+\usetikzlibrary{er, positioning,patterns, external}
 \usepackage{ccicons}
 \usepackage{booktabs}
 \usepackage{titlesec}% for custom titles
@@ -1059,6 +1059,9 @@ after packing node={
 	]{#1}%
 }
 
-\endofdump
+\newcommand{\externalize}[1]{
+	\tikzset{external/system call={pdflatex --shell-escape --fmt=#1 --halt-on-error -jobname "\image" "\texsource"}}
+\tikzexternalize[prefix=tikz/]
+}
 
-% pdftex -ini -jobname=".preamble" "&pdflatex" mylatexformat.ltx .preamble.tex
+% pdftex -ini -jobname=".preamble" "&pdflatex .preamble.tex\dump"
