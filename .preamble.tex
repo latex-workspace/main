@@ -2,7 +2,6 @@
 %
 \usepackage[utf8]{inputenc}%gestisce caratteri UTF8
 \usepackage[italian]{babel}%gestisce hyphenation
-\usepackage[colorlinks]{hyperref}%gestisce collegamenti ipertestuali e hypelinkage
 \usepackage{soulutf8}%sottolineature con line break
 \usepackage{tabularx}%tabelle più sofisticate
 \usepackage{graphics}%per importare immagini
@@ -23,7 +22,7 @@
 \usepackage{ccicons}
 \usepackage{booktabs}
 \usepackage{titlesec}% for custom titles
-\usepackage[nameinlink, italian]{cleveref}
+\usepackage{makecell}
 
 \usepackage{mathrsfs}
 
@@ -34,23 +33,21 @@
 \usepackage[ruled, vlined]{algorithm2e}
 \usepackage{subcaption}
 
+\usepackage[colorlinks]{hyperref}%gestisce collegamenti ipertestuali e hypelinkage
+\usepackage[nameinlink, italian]{cleveref}
+
 % \tcbset{shield externalize}
 \renewcommand{\labelitemi}{$\circ$}
 
+\definecolor{mutedgray}{RGB}{61, 61, 61}
 \definecolor{mutedblue}{RGB}{72,70,120}
 \definecolor{mutedcyan}{RGB}{55, 126, 126}
 \definecolor{mutedred}{RGB}{167, 60, 40}
 \definecolor{mutedpurple}{RGB}{128 60 136}
 \definecolor{mutedgreen}{RGB}{55 126 34}
 \definecolor{muteddarkgreen}{RGB}{108 119 48}
+\definecolor{mutedyellow}{RGB}{173, 156, 0}
 
-\hypersetup{
-	colorlinks=true,
-	linkcolor=mutedblue,
-	citecolor=mutedgreen,
-	filecolor=mutedred,
-	urlcolor=mutedcyan,
-}
 
 
 
@@ -154,6 +151,7 @@
 \SetKwProg{Fn}{}{:}{}
 \SetKw{And}{and}
 \SetKw{Or}{or}
+\SetKw{New}{new}
 \SetKw{Downto}{downto}
 \SetKw{Print}{print}
 \SetKw{KwTo}{to}
@@ -638,20 +636,27 @@
 \definecolor{numbers}{RGB}{195, 181, 112}
 \definecolor{light}{rgb}{0.5, 0.5, 0.5}
 
+% \definecolor{mutedgray}{RGB}{61, 61, 61}
+% \definecolor{mutedblue}{RGB}{72,70,120}
+% \definecolor{mutedcyan}{RGB}{55, 126, 126}
+% \definecolor{mutedred}{RGB}{167, 60, 40}
+% \definecolor{mutedpurple}{RGB}{128 60 136}
+% \definecolor{mutedgreen}{RGB}{55 126 34}
+% \definecolor{muteddarkgreen}{RGB}{108 119 48}
 \lstdefinelanguage{cpp}{
-	classoffset = 1, keywordstyle = \color{pink}\textbf,
-	morekeywords = {class, continue, default, enum, false, new, null, private, protected, public, static, true, void, return, do, for, if, else, switch, while, try, int, long, char, float, double, short, unsigned, auto, using, namespace, constexpr},
+	classoffset = 1, keywordstyle = \color{mutedred}\textbf,
+	morekeywords = {class, continue, default, enum, false, new, null, private, protected, public, static, true, void, return, do, for, if, else, switch, while, try, int, long, char, float, double, short, unsigned, auto, using, namespace, constexpr, bool, const, operator, register},
 	%
 	%
-	classoffset = 2,keywordstyle = \color{std_functions},
+	classoffset = 2,keywordstyle = \color{mutedblue},
 	morekeywords = {begin, end, push_back, push, size, lenght, resize, empty, at, find, emplace, emplace_back, erase, now, count, cout, endl, sort},
 	%
 	%
-	classoffset = 3,keywordstyle = \color{std_members},
+	classoffset = 3,keywordstyle = \color{mutedyellow},
 	morekeywords = {std, chrono, high_resolution_clock, vector, list, unordered_set, unordered_map},
 	%
 	%
-	classoffset = 4,keywordstyle = \color{functions},
+	classoffset = 4,keywordstyle = \color{mutedcyan},
 	morekeywords = {main, Polinomial, char_to_node, allowed_functions, allowed_sequences, contained, detect_exponential, get_priority_brackets, fix_syntax, checkSyntax},
 	%
 	%
@@ -662,8 +667,8 @@
 	morecomment=[s]{/*}{*/},
 	morestring=[b]",
 	morestring=[d]',
-	stringstyle = \color{string},
-	commentstyle = \color{comment}\textit
+	stringstyle = \color{mutedgreen},
+	commentstyle = \color{mutedgray}\textit
 }
 
 \lstset{
@@ -1062,6 +1067,14 @@ after packing node={
 \newcommand{\externalize}[1]{
 	\tikzset{external/system call={pdflatex --shell-escape --fmt=#1 --halt-on-error -jobname "\image" "\texsource"}}
 \tikzexternalize[prefix=tikz/]
+}
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=mutedblue,
+	citecolor=mutedgreen,
+	filecolor=mutedred,
+	urlcolor=mutedcyan,
 }
 
 % pdftex -ini -jobname=".preamble" "&pdflatex .preamble.tex\dump"
