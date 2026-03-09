@@ -159,6 +159,7 @@
 \SetKw{KwTrue}{true}
 \SetKw{KwNot}{not}
 \SetKw{KwFalse}{false}
+\SetKw{KwBreak}{break}
 
 
 \SetKwFunction{Push}{push}
@@ -348,6 +349,9 @@
 %%%%%%%%%%%%%%%%
 \newsavebox{\defbox}
 \newcounter{defcount}
+\crefname{defcount}{definizione}{definizioni}
+\Crefname{defcount}{Definizione}{Definizioni}
+
 \newcommand{\deflist}{\Large Definizioni}
 \newlistof{defs}{def}{\deflist}
 
@@ -369,6 +373,9 @@
 %%%%%%%%%%%%%%%%
 \newsavebox{\theoremsbox}
 \newcounter{theoremscount}
+\crefname{theoremscount}{teorema}{teoremi}
+\Crefname{theoremscount}{Teorema}{Teoremi}
+
 \newcommand{\theoremlist}{\Large Teoremi e Assiomi}
 \newlistof{theorems}{the}{\theoremlist}
 
@@ -401,6 +408,9 @@
 %  Formula
 %%%%%%%%%%%%%%%%
 \newcounter{formulascount}
+\crefname{formulascount}{formula}{formule}
+\Crefname{formulascount}{Formula}{Formule}
+
 \newcommand{\formulalist}{\Large Formule}
 \newlistof{formulas}{for}{\formulalist}
 
@@ -419,6 +429,9 @@
 %  Esercizio
 %%%%%%%%%%%%%%%%
 \newcounter{exercisescount}
+\crefname{exercisescount}{esercizio}{esercizi}
+\Crefname{exercisescount}{Esercizio}{Esercizi}
+
 \newcommand{\exerciselist}{\Large Esercizi}
 \newlistof{exercises}{exe}{\exerciselist}
 
@@ -448,6 +461,9 @@
 %  Algoritmo
 %%%%%%%%%%%%%%%%
 \newcounter{myalgorithmscount}
+\crefname{myalgorithmscount}{algoritmo}{algoritmi}
+\Crefname{myalgorithmscount}{Algoritmo}{Algoritmi}
+
 \newcommand{\algorithmlist}{\Large Algoritmi}
 \newlistof{myalgorithms}{alg}{\algorithmlist}
 
@@ -476,6 +492,9 @@
 %  Comandi
 %%%%%%%%%%%%%%%%
 \newcounter{commandscount}
+\crefname{commandscount}{comando}{comandi}
+\Crefname{commandscount}{Comando}{Comandi}
+
 \newcommand{\commandlist}{\Large Comandi}
 \newlistof{commands}{com}{\commandlist}
 
